@@ -6,6 +6,7 @@ ALLOWED_HOSTS=['*']
 INSTALLED_APPS=['django.contrib.contenttypes','django.contrib.staticfiles','reconcile']
 MIDDLEWARE=[]
 ROOT_URLCONF='config.urls'
+WSGI_APPLICATION='config.wsgi.application'
 TEMPLATES=[{'BACKEND':'django.template.backends.django.DjangoTemplates','DIRS':[],'APP_DIRS':True,'OPTIONS':{}}]
 DATABASES={'default':{'ENGINE':'django.db.backends.sqlite3','NAME':os.path.join(BASE_DIR,'db.sqlite3')}}
 STATIC_URL='/static/'

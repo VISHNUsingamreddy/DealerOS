@@ -23,7 +23,7 @@ From the repository root, create and activate a virtual environment, then instal
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install "Django>=5.0" pytest pytest-django
+python -m pip install -r requirements.txt
 ```
 
 If PowerShell prevents activation, you can invoke the environment's Python directly as `.venv\Scripts\python.exe`.
