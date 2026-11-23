@@ -26,7 +26,11 @@ def _disagreements(org, reason=None, sort=None):
     def key(r):
         v=r['b_value'] if r['b_value'] is not None else r['a_value']
         return (v is None, v)
-    if sort=='-value': out=sorted(out,key=key,reverse=True)
+    if sort=='-value':
+        def descending_key(r):
+            v=r['b_value'] if r['b_value'] is not None else r['a_value']
+            return (v is not None, v)
+        out=sorted(out,key=descending_key,reverse=True)
     elif sort=='value': out=sorted(out,key=key)
     # Serialise Decimals, compute difference
     res=[]

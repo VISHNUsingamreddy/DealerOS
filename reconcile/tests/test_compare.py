@@ -22,3 +22,7 @@ def test_clean_row(): assert compare({'REC-1':A()},[B()])==[]
 def test_location_mismatch(): assert compare({'REC-1':A()},[B(loc='L2')])[0]['reason']=='LOCATION_MISMATCH'
 def test_date_mismatch(): assert compare({'REC-1':A()},[B(date='2026-03-02')])[0]['reason']=='DATE_MISMATCH'
 def test_voided_with_b_entry(): assert compare({'REC-1':A(state='VOIDED')},[B()])[0]['reason']=='VOIDED_WITH_B_ENTRY'
+
+def test_non_finite_amount_is_unknown():
+    assert parse_amount('NaN') is None
+    assert parse_amount('Infinity') is None

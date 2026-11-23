@@ -17,3 +17,10 @@ class TenantTest(TestCase):
         assert any(r["record_id"]=="REC-1042" for r in a)
         assert SystemARecord.objects.count()==120 and SystemBEntry.objects.count()==121
         assert c.get("/api/disagreements/").status_code==400
+
+    def test_descending_value_sort_keeps_missing_values_last(self):
+        call_command("import_data")
+        rows=Client().get("/api/disagreements/?org=ORG-A&sort=-value").json()
+        values=[float(r["b_value"] if r["b_value"] is not None else r["a_value"])
+                 for r in rows if r["b_value"] is not None or r["a_value"] is not None]
+        assert values == sorted(values,reverse=True)
